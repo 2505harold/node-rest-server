@@ -11,7 +11,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"nodemon server/server.js -e html,hbs,css,js,json"
+    "dev":"nodemon server/server.js -e html,hbs,css,js,json",
+    "start": "node server/server.js"
   },
   "keywords": [],
   "author": "",
