@@ -23,7 +23,7 @@
        urlDB = "mongodb://localhost:27017/cafe"
    }
   else{
-       urlDB = "mongodb+srv://harold:aSzpR5IlhlOFn9E6@cluster0-tm7ga.mongodb.net/cafe"
+       urlDB = process.env.MONGO_URI.toString();
    }
 
    process.env.URLDB = urlDB;
