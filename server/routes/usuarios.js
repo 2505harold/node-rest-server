@@ -1,11 +1,18 @@
 const express = require('express');
 const Usuario = require('../models/usuario')
+const {verificaToken,verificaRole} = require('../middleware/autenticacion')
 const app = express();
 const bcrypt = require('bcrypt')
 const _ = require('underscore')
 
 //Routes
-app.get('/usuarios',(req,res)=>{
+app.get('/usuarios',verificaToken,(req,res)=>{
+
+    return res.json({
+        usuario:req.usuario,
+        nombre: req.usuario.nombre,
+        email: req.usuario.email
+    })
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -36,7 +43,7 @@ app.get('/usuarios',(req,res)=>{
 
 
 //lista usuarios
-app.post('/usuarios',(req,res)=>{
+app.post('/usuarios',verificaToken,(req,res)=>{
     let body = req.body;
     //crear un objeto con nuevos elementos del schema usuario
     let usuario = new Usuario({
@@ -67,7 +74,7 @@ app.post('/usuarios',(req,res)=>{
 
 
 //actualizar usuarios
-app.put('/usuarios/:id',(req,res)=>{
+app.put('/usuarios/:id',[verificaToken,verificaRole],(req,res)=>{
     let id = req.params.id; 
     let body = _.pick(req.body,['nombre','email','img','role','estado']);
 
@@ -91,7 +98,7 @@ app.put('/usuarios/:id',(req,res)=>{
 
 
 //eliminar usuarios
-app.delete('/usuarios/:id',(req,res)=>{
+app.delete('/usuarios/:id',[verificaToken,verificaRole],(req,res)=>{
     let id = req.params.id;
     let cambiaEstado ={
         estado:false

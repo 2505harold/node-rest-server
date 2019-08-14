@@ -8,8 +8,8 @@ const app = express()
 app.use(express.urlencoded({extended:false}));
 app.use(express.json())
 
-//rutas
-app.use(require('./routes/usuarios'));
+//config rutas
+app.use(require('./routes/index'));
 
 //Connect to database
 mongoose.connect(process.env.URLDB,
@@ -20,6 +20,8 @@ mongoose.connect(process.env.URLDB,
     console.log('Base de datos conectado')
 })
 
+
+//escuchando el puerto
 app.listen(process.env.PORT,()=>{
     console.log(`escuchando en el puerto ${process.env.PORT}`)
 })
