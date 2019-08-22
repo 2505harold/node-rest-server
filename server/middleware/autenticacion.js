@@ -12,11 +12,10 @@ const jwt = require('jsonwebtoken')
             return res.status(401).json({
                 ok:false,
                 err:{
-                    message:'Token nonvalido'
+                    message:'Token no valido'
                 }
             })
         }
-
         //en el decoded esta la informacion dle usuario - payload
         //en el reques agregamos una nueva propiedad 'usuario'
         //es igual a todo lo que se encuentra el payload con la propiedad 'usuario'

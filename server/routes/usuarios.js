@@ -42,7 +42,7 @@ app.get('/usuarios',verificaToken,(req,res)=>{
 })
 
 
-//lista usuarios
+//crear usuario
 app.post('/usuarios',verificaToken,(req,res)=>{
     let body = req.body;
     //crear un objeto con nuevos elementos del schema usuario
@@ -50,7 +50,7 @@ app.post('/usuarios',verificaToken,(req,res)=>{
         nombre:body.nombre,
         email:body.email,
         password:  bcrypt.hashSync(body.password,10),
-        rol: body.role
+        role: body.role
     })
 
     usuario.save((err,usuarioDB)=>{

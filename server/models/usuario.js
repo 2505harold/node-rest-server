@@ -42,9 +42,9 @@ let userSchema = new Schema({
 });
 
 
-//el moetodo tolson en un esquema siempre se llama 
+//el metodo toJSON en un esquema siempre se llama 
 //cuando se imprime el resultado
-//hems modificado cuando se imprima en un json la propieddad pasword
+//hemos modificado cuando se imprima en un json la propieddad pasword
 userSchema.methods.toJSON = function(){
     let usuario = this;
     let userObject = usuario.toObject();
