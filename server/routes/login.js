@@ -25,7 +25,7 @@ app.post('/login',(req,res)=>{
             })
         }
 
-        if (!bcrypt.compareSync(body.password, usuarioDB.password)){//si no son iguales
+        if (!bcrypt.compareSync(body.password, usuarioDB.password)){//usuario existe pero los password no son iguales
             return res.status(400).json({
                 ok:false,
                 err:{
@@ -70,7 +70,6 @@ async function verify(token) {
 app.post('/google',async (req,res)=>{
     //con posteo de google recibimol el token
     let token = req.body.idtoken
-console.log(token)
     let googleUser = await verify(token)
         .catch(err =>{
             return res.status(403).json({
